@@ -9,19 +9,20 @@ class Caminante{
         this.vel = 4;
         this.t = 10;
         //this.color = color(0, 168, 0, 60);
-        this.color = color(random(255), random(255), random(255), 60);
+        this.color = color(random(360), random(100), random(100), 60);
     }
 
     dibujar(){
-        fill(this.color);
-        push();
+         push();
+        noStroke();
+        fill(this.color);    
         translate(this.x,this.y);
         rotate(this.dir);
         ellipse(0,0,this.t,this.t);
         pop();
     }
     mover(){
-        
+       
         //valor = noise((this.x+frameCount*10)*escalaNoise, (this.y+frameCount*10)*escalaNoise);
         
         //this.dir = map(valor,0,1,0,radians(360));
@@ -35,10 +36,10 @@ class Caminante{
     }
     comprobarLimites(){
         if(this.x < 0 || this.x > width){
-            this.dx *= -1;
+            this.dir = PI - this.dir;
         }
         if(this.y < 0 || this.y > height){
-            this.dy *= -1;
+            this.dir= -this.dir;
         }
     }
 }
